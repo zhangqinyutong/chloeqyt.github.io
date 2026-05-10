@@ -1,0 +1,483 @@
+/* ===== CSS Custom Properties: Dark Theme (default) ===== */
+:root {
+  --bg: #1a1a1a;
+  --text: #e8e4dd;
+  --text-secondary: #8a8580;
+  --border: #3a3a3a;
+  --accent: #c9b99a;
+  --year-color: #9a948c;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: Georgia, "Times New Roman", "Noto Serif SC", "Source Han Serif SC", STSong, serif;
+  --content-width: 680px;
+  --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ===== CSS Custom Properties: Light Theme ===== */
+[data-theme="light"] {
+  --bg: #fafaf8;
+  --text: #2c2c2c;
+  --text-secondary: #6b6b6b;
+  --border: #d4d4d4;
+  --accent: #8b7355;
+  --year-color: #707070;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-serif);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  transition: var(--transition-theme);
+  min-height: 100vh;
+}
+
+/* ===== Navigation Bar ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition-theme);
+}
+
+.navbar-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 18px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.navbar-brand:hover {
+  color: var(--accent);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-link {
+  font-size: 1.0rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent);
+}
+
+/* ===== Theme Toggle Button ===== */
+.theme-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px 6px;
+  line-height: 1;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.theme-btn:hover {
+  color: var(--accent);
+}
+
+/* Show/hide sun/moon icons based on theme */
+.icon-sun,
+.icon-moon {
+  display: inline-block;
+}
+
+[data-theme="dark"] .icon-moon,
+[data-theme="light"] .icon-sun {
+  display: none;
+}
+
+/* ===== Main Content ===== */
+.content {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 120px 24px 80px;
+}
+
+/* ===== Page Title ===== */
+.page-title {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 400;
+  text-align: center;
+  color: var(--text);
+  letter-spacing: 0.12em;
+  margin-bottom: 60px;
+  transition: var(--transition-theme);
+}
+
+/* ===== Year Group ===== */
+.year-group {
+  margin-bottom: 48px;
+}
+
+.year-label {
+  font-family: var(--font-sans);
+  font-size: 1.0rem;
+  font-weight: 500;
+  color: var(--year-color);
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+  transition: var(--transition-theme);
+}
+
+/* ===== Article Row ===== */
+.article-row {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.article-title {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.08rem;
+  white-space: nowrap;
+  transition: var(--transition-theme);
+}
+
+.article-title:hover {
+  color: var(--accent);
+}
+
+.article-dots {
+  flex: 1;
+  min-width: 24px;
+  margin: 0 10px;
+  border-bottom: 1px dotted var(--border);
+  transition: var(--transition-theme);
+}
+
+.article-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  transition: var(--transition-theme);
+}
+
+.article-highlight .article-title {
+  color: var(--accent);
+}
+
+/* ===== Home Page Articles ===== */
+.home-article {
+  margin-bottom: 52px;
+}
+
+.home-article-title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  text-align: center;
+  transition: var(--transition-theme);
+}
+
+.home-article-title:hover {
+  color: var(--accent);
+}
+
+.home-article-excerpt {
+  font-size: 1.0rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.home-article-meta {
+  font-size: 0.82rem;
+  color: var(--year-color);
+  letter-spacing: 0.04em;
+}
+
+/* ===== About Page ===== */
+.about-content {
+  margin-top: -10px;
+}
+
+.about-content p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--text);
+  margin-bottom: 1.2em;
+  text-align: left;
+}
+
+.about-content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.about-content a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Article Detail Page ===== */
+.article-detail {
+  margin-top: -10px;
+}
+
+.article-back {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.2s ease;
+}
+
+.article-back:hover {
+  color: var(--accent);
+}
+
+.article-detail-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.article-detail-meta {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--year-color);
+  margin-bottom: 40px;
+  letter-spacing: 0.04em;
+}
+
+.article-detail-body {
+  font-size: 1.0rem;
+  line-height: 1.9;
+  color: var(--text);
+}
+
+.article-detail-body p {
+  margin-bottom: 1.4em;
+}
+
+.article-detail-body h2 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text);
+  margin: 2em 0 0.8em;
+}
+
+.article-detail-body h3 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text);
+  margin: 1.8em 0 0.6em;
+}
+
+.article-detail-body ul,
+.article-detail-body ol {
+  margin: 0.8em 0 1.4em;
+  padding-left: 1.4em;
+}
+
+.article-detail-body li {
+  margin-bottom: 0.4em;
+  line-height: 1.8;
+}
+
+.article-detail-body code {
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 0.9em;
+  background: var(--border);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--text);
+}
+
+.article-detail-body pre {
+  background: var(--border);
+  padding: 16px 20px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1.2em 0 1.6em;
+}
+
+.article-detail-body pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.article-detail-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+.article-detail-body a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.article-detail-body a:hover {
+  text-decoration: underline;
+}
+
+.article-detail-body strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .navbar-inner {
+    padding: 14px 18px;
+  }
+
+  .navbar-links {
+    gap: 16px;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+
+  .content {
+    padding: 100px 18px 60px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+
+  .year-label {
+    font-size: 0.9rem;
+  }
+
+  .article-title {
+    font-size: 0.98rem;
+  }
+
+  .article-detail-title {
+    font-size: 1.5rem;
+  }
+
+  .article-detail-body {
+    font-size: 0.95rem;
+  }
+
+  .home-article-title {
+    font-size: 1.3rem;
+  }
+
+  .home-article-excerpt {
+    font-size: 0.92rem;
+  }
+
+  .about-content p {
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar-inner {
+    padding: 12px 14px;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .navbar-links {
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+  }
+
+  .content {
+    padding: 90px 14px 40px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .article-title {
+    font-size: 0.95rem;
+  }
+
+  .article-date {
+    font-size: 0.78rem;
+  }
+
+  .home-article-title {
+    font-size: 1.2rem;
+  }
+
+  .home-article-excerpt {
+    font-size: 0.88rem;
+  }
+
+  .article-detail-title {
+    font-size: 1.3rem;
+  }
+
+  .article-detail-body {
+    font-size: 0.9rem;
+  }
+
+  .about-content p {
+    font-size: 0.92rem;
+  }
+}
