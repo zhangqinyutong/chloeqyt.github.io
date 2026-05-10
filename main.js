@@ -10,7 +10,7 @@
 
 var articles = {
   tech: [
-    { slug: "user-shopping-analysis",     title: "用户购物行为数据分析",       date: "2026-05-10", excerpt: "基于100万真实电商用户1亿条购物行为数据的SQL数据分析", file: "articles/用户购物行为数据分析_项目日志.md" },
+    { slug: "build-static-blog",     title: "构建极简静态博客的思考与实践",       date: "2026-05-01", excerpt: "为什么我选择从零开始搭建一个静态博客，而不是使用现成的框架？本文记录了这个过程中的技术选型、设计考量与取舍……", file: "articles/build-static-blog.md" },
     { slug: "css-custom-properties", title: "深入理解 CSS 自定义属性",             date: "2026-04-18", excerpt: "CSS 自定义属性远不止是「CSS 变量」那么简单。它们在级联层面工作，拥有继承性和动态性，比预处理器变量强大得多……", file: "articles/css-custom-properties.md" },
     { slug: "typescript-patterns",   title: "TypeScript 日常开发中的实用模式",      date: "2026-03-30", excerpt: "辨析联合类型、模板字面量类型、类型守卫——这些 TypeScript 模式已经深深融入了我的日常开发工作流中……", file: "articles/typescript-patterns.md" },
     { slug: "rust-borrow-checker",   title: "借用一个下午，理解 Rust 的所有权模型",   date: "2026-02-15", excerpt: "Rust 的借用检查器让很多人望而却步。本文用具体的例子和思维模型，帮你建立对所有权和生命周期的直觉……", file: "articles/rust-borrow-checker.md" }
@@ -180,8 +180,11 @@ function parseMarkdown(src) {
 //  Routing
 // ==================================================
 function getRoute() {
-  var hash = window.location.hash.replace("#", "");
-  if (!hash) return { page: "home" };
+  var raw = window.location.hash.replace("#", "");
+  if (!raw) return { page: "home" };
+  // Decode in case the browser percent-encodes non-ASCII characters in the hash
+  try { raw = decodeURIComponent(raw); } catch(e) {}
+  var hash = raw;
   var slashIdx = hash.indexOf("/");
   if (slashIdx > -1) {
     var cat = hash.substring(0, slashIdx);
@@ -326,6 +329,8 @@ function renderArticle(category, slug) {
   xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
       var mdHTML = parseMarkdown(xhr.responseText);
+      // Strip the first <h1> from markdown — the JS title already serves that role
+      mdHTML = mdHTML.replace(/<h1>[^<]*<\/h1>\n?/, "");
       articleList.innerHTML =
         '<div class="article-detail">' +
         '<a class="article-back" href="#' + category + '">← 返回 ' + categoryPageTitles[category] + "</a>" +
